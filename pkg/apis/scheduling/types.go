@@ -242,6 +242,12 @@ type SubGroupPolicySpec struct {
 	// +listType=atomic
 	// +optional
 	MatchLabelKeys []string
+
+	// MinAvailableSubGroup defines the MinAvailable of subgroup in different levels of scheduling.
+	// The first dimension represents the levels of scheduling, the second dimension represents
+	// the matchIndex of subgroup, and the value represents the MinAvailable of each subgroup.
+	// +optional
+	MinAvailableSubGroup [][]int32
 }
 
 // NetworkTopologyMode represents the networkTopology mode, valid values are "hard" and "soft".

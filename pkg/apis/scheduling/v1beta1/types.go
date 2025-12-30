@@ -263,6 +263,12 @@ type SubGroupPolicySpec struct {
 	// +listType=atomic
 	// +optional
 	MatchLabelKeys []string `json:"matchLabelKeys,omitempty" protobuf:"bytes,7,opt,name=matchLabelKeys"`
+
+	// MinAvailableSubGroup defines the MinAvailable of subgroup in different levels of scheduling.
+	// The first dimension represents the levels of scheduling, the second dimension represents
+	// the matchIndex of subgroup, and the value represents the MinAvailable of each subgroup.
+	// +optional
+	MinAvailableSubGroup [][]int32 `json:"minAvailableSubGroup,omitempty" protobuf:"bytes,8,rep,name=minAvailableSubGroup"`
 }
 
 type NetworkTopologyMode string
