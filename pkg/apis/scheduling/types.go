@@ -242,6 +242,18 @@ type SubGroupPolicySpec struct {
 	// +listType=atomic
 	// +optional
 	MatchLabelKeys []string
+
+	// ExpectedSubGroups defines the expected subgroup allocation levels.
+	// This is used for progressive gang scheduling where the system attempts to allocate
+	// resources at specific subgroup counts rather than any value between min and max.
+	// Constraints:
+	//  - ExpectedSubGroups[0] must equal MinSubGroups
+	//  - ExpectedSubGroups[last] must equal the total number of subgroups
+	//  - Values must be monotonically increasing
+	// When set, the scheduler will truncate allocations to match the largest expected
+	// subgroup count that can be satisfied by available resources.
+	// +optional
+	ExpectedSubGroups []int32
 }
 
 // NetworkTopologyMode represents the networkTopology mode, valid values are "hard" and "soft".

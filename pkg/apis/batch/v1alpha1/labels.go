@@ -25,6 +25,10 @@ const (
 	JobNameKey = "volcano.sh/job-name"
 	// TaskPartitionID task partition id key used in pod annotation / labels
 	TaskPartitionID = "volcano.sh/partition-id"
+	// TaskPartitionID task partition group id key used in pod annotation / labels
+	TaskPartitionGroupID = "volcano.sh/partition-group-id"
+	// TaskPartitionGroupStart task partition group range key used in pod annotation / labels
+	TaskPartitionGroupRange = "volcano.sh/partition-group-range"
 	// QueueNameKey queue name key used in pod annotation / labels
 	QueueNameKey = "volcano.sh/queue-name"
 	// JobNamespaceKey job namespace key

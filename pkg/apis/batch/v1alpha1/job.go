@@ -303,6 +303,19 @@ type PartitionPolicySpec struct {
 	// +kubebuilder:validation:Minimum=0
 	// +optional
 	MinPartitions int32 `json:"minPartitions,omitempty" protobuf:"bytes,4,opt,name=minPartitions"`
+
+	// ExpectedPartitions defines the expected partition allocation levels.
+	// This is used for progressive gang scheduling where the system attempts to allocate
+	// resources at specific partition counts rather than any value between min and max.
+	// Constraints:
+	//  - ExpectedPartitions[0] must equal MinPartitions
+	//  - ExpectedPartitions[last] must equal TotalPartitions
+	//  - Values must be monotonically increasing
+	// Example: With TotalPartitions=4, MinPartitions=1, ExpectedPartitions=[1,2,4],
+	// the system will only allocate 1*PartitionSize, 2*PartitionSize, or 4*PartitionSize pods,
+	// never 3*PartitionSize.
+	// +optional
+	ExpectedPartitions []int32 `json:"expectedPartitions,omitempty" protobuf:"bytes,5,rep,name=expectedPartitions"`
 }
 
 // JobPhase defines the phase of the job.
